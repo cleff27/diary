@@ -8,10 +8,11 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { URL } from "../../App";
 import { useNavigate } from "react-router-dom";
+import userContext from "../../context/userContext";
 export default function MediaCardUsers(props) {
   const [load, setload] = React.useState(false);
   const navigate = useNavigate();
-
+  const contextData = React.useContext(userContext);
   const handleSendRequest = (event) => {
     event.preventDefault();
     const senderId = props.senderId;
@@ -30,7 +31,18 @@ export default function MediaCardUsers(props) {
         setload(false);
       });
   };
-
+  const removeRequest = (removeId) => {
+    const friendrequests = contextData.user.friendRequests;
+    const newfriendreqs = friendrequests.filter(
+      (request) => request === removeId
+    );
+    contextData.setUser((prev) => {
+      return {
+        ...prev,
+        friendRequests: newfriendreqs,
+      };
+    });
+  };
   const handleAcceptRequest = (event) => {
     event.preventDefault();
     const senderId = props.data?._id;
@@ -39,6 +51,7 @@ export default function MediaCardUsers(props) {
       .post(URL + "/accept-request/" + props.userId, { senderId })
       .then((response) => {
         console.log(response.data);
+        removeRequest(senderId);
         //seterror(response.data.message);
       })
       .catch((error) => {

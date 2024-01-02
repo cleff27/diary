@@ -13,7 +13,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import "./Navbar.css";
 import userContext from "../../context/userContext";
-import { Button } from "@mui/material";
+import { Badge, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../../App";
@@ -46,7 +46,12 @@ export default function Navbar() {
   return (
     <React.Fragment>
       <div className="maindiv">
-        <Typography sx={{ minWidth: 100 }}>Home</Typography>
+        <Link to="/">
+          <Button>
+            <Typography sx={{ minWidth: 100 }}>Home</Typography>
+          </Button>
+        </Link>
+
         <Link to="/create">
           <Button>
             <Typography sx={{ minWidth: 100 }}>Create</Typography>
@@ -66,11 +71,16 @@ export default function Navbar() {
         {contextData.isLoggedIn ? (
           <div className="avatar-div">
             <Link to="/friendrequests">
-              <Button>
-                <Typography sx={{ minWidth: 100 }}>
-                  {"Friend Requests"}
-                </Typography>
-              </Button>
+              <Badge
+                badgeContent={contextData.user.friendRequests.length}
+                color="primary"
+              >
+                <Button>
+                  <Typography sx={{ minWidth: 100 }}>
+                    {"Friend Requests"}
+                  </Typography>
+                </Button>
+              </Badge>
             </Link>
             <Tooltip title="Account settings">
               <IconButton
