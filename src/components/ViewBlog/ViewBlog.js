@@ -40,7 +40,7 @@ export default function ViewBlog(props) {
           <CircularProgress color="inherit" />
         </Backdrop>
       ) : dataRequired ? (
-        <div>
+        <div className="blog-container">
           <div className="blog-post">
             <h1 className="blog-title">{dataRequired.title}</h1>
             <p className="blog-date">
