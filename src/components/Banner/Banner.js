@@ -9,8 +9,8 @@ export default function Banner() {
   return (
     <Box sx={{ flexGrow: 1 }} className="banner-box">
       <Grid container spacing={0}>
-        <Grid className="left-banner" container xs={6}>
-          <Grid xs={12}>
+        <Grid className="left-banner" container xs={12} sm={6} md={6}>
+          <Grid xs={12} sm={12} md={12}>
             <div className="display-text">
               <h1>
                 <h1 className="banner-heading">Write Down Your Day</h1>
@@ -18,7 +18,7 @@ export default function Banner() {
               <h2>Share your thoughts and day with your friends</h2>
             </div>
           </Grid>
-          <Grid xs={12}>
+          <Grid xs={12} sm={12} md={12}>
             <div className="get-started">
               <Link to="/create">
                 {" "}
@@ -31,7 +31,7 @@ export default function Banner() {
           </Grid>
         </Grid>
 
-        <Grid xs={6}>
+        <Grid xs={0} sm={6} md={6}>
           <div className="img-div">
             <img className="banner-img" src={bannerImg} alt="banner here" />
           </div>

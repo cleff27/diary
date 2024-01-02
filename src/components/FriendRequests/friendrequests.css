@@ -1,3 +1,8 @@
 .friend-request-div {
   padding: 50px 100px;
 }
+@media (max-width: 768px) {
+  .friend-request-div {
+    padding: 10px 5px;
+  }
+}

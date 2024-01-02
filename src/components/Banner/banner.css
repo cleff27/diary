@@ -31,3 +31,15 @@
 a {
   text-decoration: none;
 }
+@media (max-width: 768px) {
+  .banner-box {
+    text-align: center;
+    padding: 50px;
+  }
+  .display-text {
+    padding: 0px;
+  }
+  .get-started {
+    padding-top: 50px;
+  }
+}

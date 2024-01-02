@@ -2,3 +2,8 @@
   display: flex;
   padding: 50px 100px;
 }
+@media (max-width: 768px) {
+  .friends-div {
+    padding: 10px 5px;
+  }
+}

@@ -5,3 +5,8 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+@media (max-width: 768px) {
+  .create-div {
+    padding: 10px 5px;
+  }
+}
