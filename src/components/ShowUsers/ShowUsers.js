@@ -46,16 +46,18 @@ function ShowUsers() {
         </Backdrop>
       ) : dataRequired.length > 0 ? (
         <Grid container spacing={2}>
-          {dataRequired.map((data, index) => (
-            <Grid xs={12} md={4} sm={6} className="gridcard">
-              <MediaCardUsers
-                data={data}
-                key={index}
-                senderId={contextData.user._id}
-                actionType="Request"
-              />
-            </Grid>
-          ))}
+          {dataRequired.map((data, index) =>
+            contextData.user._id !== data._id ? (
+              <Grid item xs={12} md={4} sm={6} className="gridcard" key={index}>
+                <MediaCardUsers
+                  data={data}
+                  senderId={contextData.user._id}
+                  actionType="Request"
+                  setreload={setreload}
+                />
+              </Grid>
+            ) : null
+          )}
         </Grid>
       ) : (
         <h1>no result</h1>

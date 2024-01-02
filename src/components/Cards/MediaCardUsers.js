@@ -12,7 +12,10 @@ import userContext from "../../context/userContext";
 export default function MediaCardUsers(props) {
   const [load, setload] = React.useState(false);
   const navigate = useNavigate();
-  const contextData = React.useContext(userContext);
+  const [contextData, setContextData] = React.useState(
+    React.useContext(userContext)
+  );
+
   const handleSendRequest = (event) => {
     event.preventDefault();
     const senderId = props.senderId;
@@ -31,17 +34,46 @@ export default function MediaCardUsers(props) {
         setload(false);
       });
   };
+
   const removeRequest = (removeId) => {
-    const friendrequests = contextData.user.friendRequests;
-    const newfriendreqs = friendrequests.filter(
+    const user = contextData.user;
+    const newfriendrequests = user.friendRequests.filter(
       (request) => request === removeId
     );
-    contextData.setUser((prev) => {
+    user.friendRequests = newfriendrequests;
+    console.log(user);
+    setContextData((prev) => {
       return {
         ...prev,
-        friendRequests: newfriendreqs,
+        user: user,
       };
     });
+    contextData.updateUser(user);
+  };
+  const addFriend = (addId) => {
+    const user = contextData.user;
+    const newuser = user.friends.push(addId);
+
+    setContextData((prev) => {
+      return {
+        ...prev,
+        user: newuser,
+      };
+    });
+    contextData.updateUser(newuser);
+  };
+  const CheckRelation = () => {
+    const currfriends = contextData.user.friends;
+    if (currfriends.includes(props.data._id)) {
+      return <Button onClick={handleViewRequest}>View</Button>;
+    } else if (props.data.friendRequests.includes(contextData.user._id)) {
+      return <Button>Request Sent</Button>;
+    } else
+      return (
+        <Button size="small" onClick={handleSendRequest}>
+          Send Request
+        </Button>
+      );
   };
   const handleAcceptRequest = (event) => {
     event.preventDefault();
@@ -52,6 +84,7 @@ export default function MediaCardUsers(props) {
       .then((response) => {
         console.log(response.data);
         removeRequest(senderId);
+        addFriend(senderId);
         //seterror(response.data.message);
       })
       .catch((error) => {
@@ -73,13 +106,7 @@ export default function MediaCardUsers(props) {
       case "Request":
         return (
           <CardActions>
-            {load ? (
-              "Sending Request"
-            ) : (
-              <Button size="small" onClick={handleSendRequest}>
-                Send Request
-              </Button>
-            )}
+            {load ? "Sending Request" : <CheckRelation />}
           </CardActions>
         );
       case "Accept":
@@ -126,15 +153,6 @@ export default function MediaCardUsers(props) {
           {props.data?.fname + " " + props.data?.lname}
         </Typography>
       </CardContent>
-      {/* <CardActions>
-        {load ? (
-          "Sending Request"
-        ) : (
-          <Button size="small" onClick={handleSendRequest}>
-            Send Request
-          </Button>
-        )}
-      </CardActions> */}
       <HandleButtonType />
     </Card>
   );

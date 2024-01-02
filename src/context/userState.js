@@ -16,8 +16,15 @@ const UserState = (props) => {
       setIsLoggedIn(true);
     }
   }, []);
+  const updateUser = (newUserData) => {
+    const updatedUser = { ...user, ...newUserData };
+    setUser(updatedUser);
+    sessionStorage.setItem("user", JSON.stringify(updatedUser));
+  };
   return (
-    <userContext.Provider value={{ user, isLoggedIn, setIsLoggedIn, setUser }}>
+    <userContext.Provider
+      value={{ user, isLoggedIn, setIsLoggedIn, setUser, updateUser }}
+    >
       {props.children}
     </userContext.Provider>
   );

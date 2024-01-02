@@ -49,10 +49,9 @@ function FriendRequests() {
       ) : dataRequired.length > 0 ? (
         <Grid container spacing={2}>
           {dataRequired.map((data, index) => (
-            <Grid xs={12} md={4} sm={6} className="gridcard">
+            <Grid item xs={12} md={4} sm={6} className="gridcard" key={index}>
               <MediaCardUsers
                 data={data}
-                key={index}
                 userId={contextData.user._id}
                 actionType="Accept"
                 setreload={setreload}

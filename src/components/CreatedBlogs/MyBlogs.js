@@ -50,8 +50,8 @@ function MyBlogs() {
       ) : dataRequired.length > 0 ? (
         <Grid container>
           {dataRequired.map((data, index) => (
-            <Grid xs={12} md={4} sm={4} className="gridcard">
-              <MediaCard data={data} key={index} />
+            <Grid item xs={12} md={4} sm={4} className="gridcard" key={index}>
+              <MediaCard data={data} />
             </Grid>
           ))}
         </Grid>

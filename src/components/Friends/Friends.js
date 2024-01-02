@@ -50,8 +50,8 @@ function Friends() {
       ) : dataRequired.length > 0 ? (
         <Grid container spacing={2}>
           {dataRequired.map((data, index) => (
-            <Grid xs={12} md={4} sm={6} className="gridcard">
-              <MediaCardUsers data={data} key={index} actionType="View" />
+            <Grid item xs={12} md={4} sm={6} className="gridcard" key={index}>
+              <MediaCardUsers data={data} actionType="View" />
             </Grid>
           ))}
         </Grid>
