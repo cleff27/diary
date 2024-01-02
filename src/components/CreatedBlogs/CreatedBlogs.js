@@ -37,9 +37,9 @@ function CreatedBlogs(props) {
           <CircularProgress color="inherit" />
         </Backdrop>
       ) : dataRequired.length > 0 ? (
-        <Grid container spacing={2}>
+        <Grid container>
           {dataRequired.map((data, index) => (
-            <Grid xs={4}>
+            <Grid xs={12} md={4} sm={6} className="gridcard">
               <MediaCard data={data} key={index} />
             </Grid>
           ))}

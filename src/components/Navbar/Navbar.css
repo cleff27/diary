@@ -1,8 +1,12 @@
 .maindiv {
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: normal; */
   padding: 10px 50px;
 }
-.avatar-div {
+.navbar-brand {
   margin-left: auto;
+  display: flex;
+}
+.nav-tabss {
+  text-align: center;
 }

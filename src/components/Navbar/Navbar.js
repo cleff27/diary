@@ -8,8 +8,6 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import "./Navbar.css";
 import userContext from "../../context/userContext";
@@ -45,69 +43,98 @@ export default function Navbar() {
   };
   return (
     <React.Fragment>
-      <div className="maindiv">
-        <Link to="/">
-          <Button>
-            <Typography sx={{ minWidth: 100 }}>Home</Typography>
-          </Button>
-        </Link>
-
-        <Link to="/create">
-          <Button>
-            <Typography sx={{ minWidth: 100 }}>Create</Typography>
-          </Button>
-        </Link>
-        <Link to="/friends">
-          <Button>
-            <Typography sx={{ minWidth: 100 }}>Friends</Typography>
-          </Button>
-        </Link>
-        <Link to="/allUsers">
-          <Button>
-            <Typography sx={{ minWidth: 100 }}>{"All Users (beta)"}</Typography>
-          </Button>
-        </Link>
-
-        {contextData.isLoggedIn ? (
-          <div className="avatar-div">
-            <Link to="/friendrequests">
-              <Badge
-                badgeContent={contextData.user.friendRequests.length}
-                color="primary"
-              >
-                <Button>
-                  <Typography sx={{ minWidth: 100 }}>
-                    {"Friend Requests"}
-                  </Typography>
-                </Button>
-              </Badge>
-            </Link>
-            <Tooltip title="Account settings">
-              <IconButton
-                onClick={handleClick}
-                size="small"
-                sx={{ ml: 2 }}
-                aria-controls={open ? "account-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-              >
-                <Avatar sx={{ width: 32, height: 32 }}>
-                  {contextData.user.fname.substr(0, 1).toUpperCase()}
-                </Avatar>
-              </IconButton>
-            </Tooltip>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary maindiv">
+        <div className="container-fluid">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to="/">
+                  <Button>
+                    <Typography sx={{ minWidth: 100 }}>Home</Typography>
+                  </Button>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/create">
+                  <Button>
+                    <Typography sx={{ minWidth: 100 }}>Create</Typography>
+                  </Button>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/friends">
+                  <Button>
+                    <Typography sx={{ minWidth: 100 }}>Friends</Typography>
+                  </Button>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/allUsers">
+                  <Button>
+                    <Typography sx={{ minWidth: 100 }}>
+                      {"All Users (beta)"}
+                    </Typography>
+                  </Button>
+                </Link>
+              </li>
+            </ul>
           </div>
-        ) : (
-          <div className="avatar-div">
-            <Link to="/login">
-              <Button>Log In</Button>
-            </Link>
-            <Link to="/signup">
-              <Button>Sign Up</Button>
-            </Link>
+
+          <div className="navbar-brand">
+            {contextData.isLoggedIn ? (
+              <div className="avatar-div">
+                <Link to="/friendrequests">
+                  <Badge
+                    badgeContent={contextData.user.friendRequests.length}
+                    color="primary"
+                  >
+                    <Button>
+                      <Typography sx={{ minWidth: 100 }}>
+                        {"Friend Requests"}
+                      </Typography>
+                    </Button>
+                  </Badge>
+                </Link>
+                <Tooltip title="Account settings">
+                  <IconButton
+                    onClick={handleClick}
+                    size="small"
+                    sx={{ ml: 2 }}
+                    aria-controls={open ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                  >
+                    <Avatar sx={{ width: 32, height: 32 }}>
+                      {contextData.user.fname.substr(0, 1).toUpperCase()}
+                    </Avatar>
+                  </IconButton>
+                </Tooltip>
+              </div>
+            ) : (
+              <div className="avatar-div">
+                <Link to="/login">
+                  <Button>Log In</Button>
+                </Link>
+                <Link to="/signup">
+                  <Button>Sign Up</Button>
+                </Link>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      </nav>
+
       <Menu
         anchorEl={anchorEl}
         id="account-menu"

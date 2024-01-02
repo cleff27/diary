@@ -47,7 +47,7 @@ export default function ViewBlog(props) {
               Published on: <FormatDate />
             </p>
             <div className="blog-content">
-              <p>{dataRequired.content}</p>
+              <p className="blog-para">{dataRequired.content}</p>
             </div>
           </div>
         </div>
