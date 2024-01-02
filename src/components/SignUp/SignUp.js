@@ -135,14 +135,6 @@ export default function SignUp() {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
             </Grid>
             {error.length > 0 ? <Alert severity="error">{error}</Alert> : null}
             {load ? (

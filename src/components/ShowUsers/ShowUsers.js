@@ -54,6 +54,7 @@ function ShowUsers() {
                   senderId={contextData.user._id}
                   actionType="Request"
                   setreload={setreload}
+                  reload={reload}
                 />
               </Grid>
             ) : null

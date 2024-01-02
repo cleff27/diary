@@ -32,16 +32,19 @@ export default function MediaCardUsers(props) {
       })
       .finally(() => {
         setload(false);
+        props.setreload(!props.reload);
       });
   };
 
   const removeRequest = (removeId) => {
     const user = contextData.user;
     const newfriendrequests = user.friendRequests.filter(
-      (request) => request === removeId
+      (request) => request !== removeId
     );
     user.friendRequests = newfriendrequests;
-    console.log(user);
+    // console.log(removeId);
+    // console.log(newfriendrequests);
+    // console.log(user);
     setContextData((prev) => {
       return {
         ...prev,

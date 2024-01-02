@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import "./Navbar.css";
 import userContext from "../../context/userContext";
 import { Badge, Button } from "@mui/material";
@@ -99,11 +100,9 @@ export default function Navbar() {
                     badgeContent={contextData.user.friendRequests.length}
                     color="primary"
                   >
-                    <Button>
-                      <Typography sx={{ minWidth: 100 }}>
-                        {"Friend Requests"}
-                      </Typography>
-                    </Button>
+                    <button type="button" className="btn btn-light">
+                      <PersonAddIcon />
+                    </button>
                   </Badge>
                 </Link>
                 <Tooltip title="Account settings">

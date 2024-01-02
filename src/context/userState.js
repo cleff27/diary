@@ -11,7 +11,6 @@ const UserState = (props) => {
     const loggedInUser = JSON.parse(sessionStorage.getItem("user"));
     if (loggedInUser) {
       const foundUser = loggedInUser;
-      console.log(foundUser);
       setUser(foundUser);
       setIsLoggedIn(true);
     }

@@ -12,9 +12,7 @@ export default function Banner() {
         <Grid className="left-banner" container xs={12} sm={6} md={6}>
           <Grid xs={12} sm={12} md={12}>
             <div className="display-text">
-              <h1>
-                <h1 className="banner-heading">Write Down Your Day</h1>
-              </h1>{" "}
+              <h1 className="banner-heading">Write Down Your Day</h1>{" "}
               <h2>Share your thoughts and day with your friends</h2>
             </div>
           </Grid>
