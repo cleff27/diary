@@ -91,7 +91,9 @@ export default function Navbar() {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
-                <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                <Avatar sx={{ width: 32, height: 32 }}>
+                  {contextData.user.fname.substr(0, 1).toUpperCase()}
+                </Avatar>
               </IconButton>
             </Tooltip>
           </div>

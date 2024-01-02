@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { URL } from "../../App";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Alert, Backdrop, CircularProgress } from "@mui/material";
 import userContext from "../../context/userContext";
 
@@ -31,7 +31,7 @@ export default function SignUp() {
   });
   const [error, seterror] = useState("");
   const [load, setload] = useState(false);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -52,7 +52,7 @@ export default function SignUp() {
           contextData.setIsLoggedIn(true);
           contextData.setUser(res.data.user);
           sessionStorage.setItem("user", JSON.stringify(res.data.user));
-          //navigate("/");
+          navigate("/");
         }
       })
       .catch((err) => {

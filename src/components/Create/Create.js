@@ -5,6 +5,7 @@ import { Alert, Backdrop, Button, CircularProgress } from "@mui/material";
 import userContext from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../App";
+import "./create.css";
 export default function Create() {
   const contextData = useContext(userContext);
   const navigate = useNavigate();
@@ -44,14 +45,14 @@ export default function Create() {
       })
       .catch((error) => {
         console.error(error);
-        //seterror(error.response.data.error);
+        seterror(error.response.data.error);
       })
       .finally(() => {
         setload(false);
       });
   };
   return (
-    <div>
+    <div className="create-div">
       <div>
         <TextField
           fullWidth
@@ -61,7 +62,7 @@ export default function Create() {
           value={details.title}
         />
       </div>
-      <div>
+      <div className="content-div">
         <TextField
           fullWidth
           multiline

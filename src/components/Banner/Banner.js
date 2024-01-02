@@ -13,9 +13,9 @@ export default function Banner() {
           <Grid xs={12}>
             <div className="display-text">
               <h1>
-                <h1 className="banner-heading">Create Your Perfect Resume</h1>
+                <h1 className="banner-heading">Write Down Your Day</h1>
               </h1>{" "}
-              <h2>Effortlessly Craft Your Professional Profile</h2>
+              <h2>Share your thoughts and day with your friends</h2>
             </div>
           </Grid>
           <Grid xs={12}>

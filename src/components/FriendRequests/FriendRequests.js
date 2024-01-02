@@ -7,6 +7,8 @@ import MediaCard from "../Cards/Cards";
 import userContext from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import MediaCardUsers from "../Cards/MediaCardUsers";
+import { Grid } from "@mui/material";
+import "./friendrequests.css";
 function FriendRequests() {
   const contextData = useContext(userContext);
   //const id = contextData.user._id;
@@ -36,7 +38,7 @@ function FriendRequests() {
   }, [contextData, reload]);
 
   return (
-    <div>
+    <div className="friend-request-div">
       {loading ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -45,18 +47,20 @@ function FriendRequests() {
           <CircularProgress color="inherit" />
         </Backdrop>
       ) : dataRequired.length > 0 ? (
-        <div>
+        <Grid container spacing={2}>
           {dataRequired.map((data, index) => (
-            <MediaCardUsers
-              data={data}
-              key={index}
-              userId={contextData.user._id}
-              actionType="Accept"
-              setreload={setreload}
-              reload={reload}
-            />
+            <Grid xs={4}>
+              <MediaCardUsers
+                data={data}
+                key={index}
+                userId={contextData.user._id}
+                actionType="Accept"
+                setreload={setreload}
+                reload={reload}
+              />
+            </Grid>
           ))}
-        </div>
+        </Grid>
       ) : (
         <h1>no result</h1>
       )}

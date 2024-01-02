@@ -6,7 +6,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import userContext from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import MediaCardUsers from "../Cards/MediaCardUsers";
-import { Button } from "@mui/material";
+import { Grid } from "@mui/material";
+import "./showusers.css";
 function ShowUsers() {
   const contextData = useContext(userContext);
   //const id = contextData.user._id;
@@ -35,7 +36,7 @@ function ShowUsers() {
     }
   }, [contextData, reload]);
   return (
-    <div>
+    <div className="showusers-div">
       {loading ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -44,16 +45,18 @@ function ShowUsers() {
           <CircularProgress color="inherit" />
         </Backdrop>
       ) : dataRequired.length > 0 ? (
-        <div>
+        <Grid container spacing={2}>
           {dataRequired.map((data, index) => (
-            <MediaCardUsers
-              data={data}
-              key={index}
-              senderId={contextData.user._id}
-              actionType="Request"
-            />
+            <Grid xs={4}>
+              <MediaCardUsers
+                data={data}
+                key={index}
+                senderId={contextData.user._id}
+                actionType="Request"
+              />
+            </Grid>
           ))}
-        </div>
+        </Grid>
       ) : (
         <h1>no result</h1>
       )}

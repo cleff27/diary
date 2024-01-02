@@ -3,10 +3,11 @@ import axios from "axios";
 import { URL } from "../../App";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import MediaCard from "../Cards/Cards";
 import userContext from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import MediaCardUsers from "../Cards/MediaCardUsers";
+import "./friends.css";
+import { Grid } from "@mui/material";
 function Friends() {
   const contextData = useContext(userContext);
   //const id = contextData.user._id;
@@ -38,7 +39,7 @@ function Friends() {
     setreload(!reload);
   };
   return (
-    <div>
+    <div className="friends-div">
       {loading ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -47,11 +48,13 @@ function Friends() {
           <CircularProgress color="inherit" />
         </Backdrop>
       ) : dataRequired.length > 0 ? (
-        <div>
+        <Grid container spacing={2}>
           {dataRequired.map((data, index) => (
-            <MediaCardUsers data={data} key={index} actionType="View" />
+            <Grid xs={4}>
+              <MediaCardUsers data={data} key={index} actionType="View" />
+            </Grid>
           ))}
-        </div>
+        </Grid>
       ) : (
         <h1>no result</h1>
       )}
