@@ -6,8 +6,46 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import userContext from "../../context/userContext";
+import axios from "axios";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
+import { URL } from "../../App";
 
 export default function MediaCard(props) {
+  const { user } = React.useContext(userContext);
+  const handleBlogDelete = () => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete the Blog titled ${props.data.title}?\nOnce deleted it cannot be recovered, We suggest you to Update the course instead`
+      )
+    ) {
+      axios
+        .delete(URL + `/delete/${props.data._id}`)
+        .then((res) => {
+          props.onDelete();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+  const CheckUser = () => {
+    if (props.data.userid === user._id) {
+      return (
+        <div>
+          <Link to={"/update/" + props.data._id}>
+            <Button>
+              <EditIcon />
+            </Button>
+          </Link>
+          <Button onClick={handleBlogDelete} color="error">
+            <DeleteForeverIcon />
+          </Button>
+        </div>
+      );
+    }
+  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -20,7 +58,7 @@ export default function MediaCard(props) {
           {props.data?.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.data?.content.substr(0, 20)}
+          {props.data?.content.substr(0, 100)}
         </Typography>
       </CardContent>
       <CardActions>
@@ -28,6 +66,7 @@ export default function MediaCard(props) {
           {" "}
           <Button size="small">View</Button>
         </Link>
+        <CheckUser />
       </CardActions>
     </Card>
   );

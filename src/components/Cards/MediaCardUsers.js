@@ -65,6 +65,7 @@ export default function MediaCardUsers(props) {
     });
     contextData.updateUser(newuser);
   };
+
   const CheckRelation = () => {
     const currfriends = contextData.user.friends;
     if (currfriends.includes(props.data._id)) {
@@ -78,6 +79,7 @@ export default function MediaCardUsers(props) {
         </Button>
       );
   };
+
   const handleAcceptRequest = (event) => {
     event.preventDefault();
     const senderId = props.data?._id;

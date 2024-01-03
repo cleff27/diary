@@ -14,6 +14,7 @@ import FriendRequests from "./components/FriendRequests/FriendRequests";
 import ViewBlog from "./components/ViewBlog/ViewBlog";
 import ProfilePage from "./components/Profile/ProfilePage";
 import Banner from "./components/Banner/Banner";
+import Update from "./components/Update/Update";
 export const URL = process.env.REACT_APP_BASE_URL;
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/myblogs" element={<MyBlogs />} />
         <Route path="/createdblogs/:id" element={<CreatedBlogs />} />
+        <Route path="/update/:id" element={<Update />} />
         <Route path="/viewblog/:id" element={<ViewBlog />} />
         <Route path="/friends" element={<Friends />} />
         <Route path="/allusers" element={<ShowUsers />} />

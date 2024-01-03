@@ -51,7 +51,7 @@ function MyBlogs() {
         <Grid container>
           {dataRequired.map((data, index) => (
             <Grid item xs={12} md={4} sm={4} className="gridcard" key={index}>
-              <MediaCard data={data} />
+              <MediaCard data={data} onDelete={onDelete} />
             </Grid>
           ))}
         </Grid>
