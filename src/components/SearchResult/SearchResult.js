@@ -4,12 +4,14 @@ import { URL } from "../../App";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import userContext from "../../context/userContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MediaCardUsers from "../Cards/MediaCardUsers";
 import { Grid } from "@mui/material";
-import "./showusers.css";
-function ShowUsers() {
+import "../ShowUsers/showusers.css";
+export default function SearchResult() {
+  const { id } = useParams();
   const contextData = useContext(userContext);
+  //const id = "aadarsh";
   //const id = contextData.user._id;
   const [dataRequired, setdatareq] = useState([]);
   const [loading, setloading] = useState(false);
@@ -22,7 +24,7 @@ function ShowUsers() {
       navigate("/login");
     } else {
       axios
-        .get(URL + "/allusers")
+        .post(URL + "/searchuser", { query: id })
         .then((response) => {
           setdatareq(response.data);
         })
@@ -33,7 +35,7 @@ function ShowUsers() {
           setloading(false);
         });
     }
-  }, [contextData, reload]);
+  }, [contextData, reload, id]);
   return (
     <div className="showusers-div">
       {loading ? (
@@ -65,5 +67,3 @@ function ShowUsers() {
     </div>
   );
 }
-
-export default ShowUsers;

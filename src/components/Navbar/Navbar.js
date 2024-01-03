@@ -16,6 +16,7 @@ import { Badge, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../../App";
+import Searchbar from "../Searchbar/Searchbar";
 export default function Navbar() {
   const navigate = useNavigate();
   const contextData = React.useContext(userContext);
@@ -35,6 +36,7 @@ export default function Navbar() {
         sessionStorage.removeItem("user");
         console.log("logged out");
         contextData.setIsLoggedIn(false);
+        contextData.setUser({});
         navigate("/login");
       })
       .catch((error) => {
@@ -80,14 +82,19 @@ export default function Navbar() {
                   </Button>
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/allUsers">
-                  <Button>
-                    <Typography sx={{ minWidth: 100 }}>
-                      {"All Users (beta)"}
-                    </Typography>
-                  </Button>
-                </Link>
+              {contextData.user?.isAdmin === 1 ? (
+                <li className="nav-item">
+                  <Link to="/allUsers">
+                    <Button>
+                      <Typography sx={{ minWidth: 100 }}>
+                        {"All Users (beta)"}
+                      </Typography>
+                    </Button>
+                  </Link>
+                </li>
+              ) : null}
+              <li>
+                <Searchbar />
               </li>
             </ul>
           </div>

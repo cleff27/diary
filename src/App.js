@@ -15,6 +15,7 @@ import ViewBlog from "./components/ViewBlog/ViewBlog";
 import ProfilePage from "./components/Profile/ProfilePage";
 import Banner from "./components/Banner/Banner";
 import Update from "./components/Update/Update";
+import SearchResult from "./components/SearchResult/SearchResult";
 export const URL = process.env.REACT_APP_BASE_URL;
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/update/:id" element={<Update />} />
         <Route path="/viewblog/:id" element={<ViewBlog />} />
         <Route path="/friends" element={<Friends />} />
+        <Route path="/searchresult/:id" element={<SearchResult />} />
         <Route path="/allusers" element={<ShowUsers />} />
         <Route path="/friendrequests" element={<FriendRequests />} />
         <Route path="/profile" element={<ProfilePage />} />
