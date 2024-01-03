@@ -1,10 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -32,6 +30,13 @@ export default function SignUp() {
   const [error, seterror] = useState("");
   const [load, setload] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (contextData.isLoggedIn) {
+      navigate("/");
+    }
+  }, [contextData]);
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -49,10 +54,10 @@ export default function SignUp() {
       .post(URL + "/register", formData)
       .then((res) => {
         if (res.data.msg === "User created successfully") {
-          contextData.setIsLoggedIn(true);
           contextData.setUser(res.data.user);
+          contextData.setIsLoggedIn(true);
           sessionStorage.setItem("user", JSON.stringify(res.data.user));
-          navigate("/");
+          // navigate("/");
         }
       })
       .catch((err) => {
